@@ -210,7 +210,6 @@ class HomeBridgeTasmotaAirconHTTP {
       clean: false,
       econo: false,
       filter: false,
-      model: 'Tasmota',
       quiet: false,
       sleep: -1,
       swingHorizontal: false,
@@ -221,6 +220,7 @@ class HomeBridgeTasmotaAirconHTTP {
       econoswitch: config.econoswitch || false,
       fanAutoSpeed: config.fanautospeed || 'disabled',
       light: config.light || false,
+      model: config.model || '-1',
       name: config.name || 'DAIKIN',
       quietswitch: config.quietswitch || false,
       turboswitch: config.turboswitch || false,
@@ -266,7 +266,6 @@ class HomeBridgeTasmotaAirconHTTP {
     service.getCharacteristic(Characteristic.FirmwareRevision).onGet(() => pkg.version);
     service.getCharacteristic(Characteristic.Identify).onSet(val => this.log.info('Identity ' + (this.identity = val)));
     service.getCharacteristic(Characteristic.Manufacturer).onGet(() => 'TasmotaAirconHTTP');
-    service.getCharacteristic(Characteristic.Model).onGet(() => this.state.model);
     service.getCharacteristic(Characteristic.Name).onGet(() => this.name);
     service.getCharacteristic(Characteristic.SerialNumber).onGet(() => 'S01');
     return service;
